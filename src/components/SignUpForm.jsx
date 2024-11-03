@@ -8,13 +8,28 @@ const SignUpForm = ({ setToken }) => {
 
 
 
+
+  const usernameAndPasswordCheck = () => {
+
+    if(username === `` && password === ``) {
+      setError("Fill username AND password");
+    }
+
+    else if (username.length < 8 || password.length < 4) {
+      setError("Username must be at least 8 characters long\nAnd\nPassword must be at least 4 characters long");
+    }
+
+    return;
+  }
+
+
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(username === `` || password === ``) {
-      setError("Fill username AND password");
-      return;
-    }
+    usernameAndPasswordCheck();
+
 
     try{
 
@@ -32,6 +47,9 @@ const SignUpForm = ({ setToken }) => {
       const result = await response.json();
       setToken(result.token);
 
+      setUsername(``);
+      setPassword(``);
+
 
     } catch(error) {
       setError(error.message);
@@ -42,7 +60,7 @@ const SignUpForm = ({ setToken }) => {
   return (
     <>
       <h3>Sign Up</h3>
-      {error && <p>{error}</p>}
+      {error && <pre>{error}</pre>}
 
       <form onSubmit={handleSubmit}>
         Username:
