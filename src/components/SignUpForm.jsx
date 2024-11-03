@@ -9,7 +9,7 @@ const SignUpForm = ({ setToken }) => {
 
 
 
-  const usernameAndPasswordCheck = () => {
+  const inputCheck = () => {
 
     if(username === `` && password === ``) {
       setError("Fill username AND password");
@@ -31,7 +31,7 @@ const SignUpForm = ({ setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(!usernameAndPasswordCheck()){
+    if(!inputCheck()){
       return;
     };
 
