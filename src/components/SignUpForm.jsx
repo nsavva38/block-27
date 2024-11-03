@@ -15,8 +15,8 @@ const SignUpForm = ({ setToken }) => {
       setError("Fill username AND password");
     }
 
-    else if (username.length < 8 || password.length < 4) {
-      setError("Username must be at least 8 characters long\nAnd\nPassword must be at least 4 characters long");
+    else if (username.length < 4 || password.length < 4) {
+      setError("Username must be at least 4 characters long\nAnd\nPassword must be at least 4 characters long");
     }
 
     return;
