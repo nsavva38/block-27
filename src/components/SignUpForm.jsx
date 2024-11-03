@@ -13,13 +13,16 @@ const SignUpForm = ({ setToken }) => {
 
     if(username === `` && password === ``) {
       setError("Fill username AND password");
+      return false;
     }
 
     else if (username.length < 4 || password.length < 4) {
       setError("Username must be at least 4 characters long\nAnd\nPassword must be at least 4 characters long");
+      return false;
     }
 
-    return;
+    setError(`Submitted`);
+    return true;
   }
 
 
@@ -28,7 +31,9 @@ const SignUpForm = ({ setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    usernameAndPasswordCheck();
+    if(!usernameAndPasswordCheck()){
+      return;
+    };
 
 
     try{
